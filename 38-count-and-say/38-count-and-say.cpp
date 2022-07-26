@@ -1,7 +1,7 @@
 class Solution {
 public:
     string countAndSay(int n) {
-      string s = "1";
+     /* string s = "1";
       n--;
       while(n--) {
         char ch = s[0];
@@ -22,6 +22,21 @@ public:
         s = t;
       }
       
-      return s;
+      return s;*/
+        string prev = "1";
+        for(int i = 2; i <= n; i++){
+            int l = 0;
+            int r = 0;
+            string tmp;
+            while(r < prev.size()){
+                while(r < prev.size() && prev[l] == prev[r]){
+                    r++;
+                }
+                tmp += to_string(r - l) + prev[l];
+                l = r;
+            }
+            prev = tmp;
+        }
+        return prev;
     }
 };
